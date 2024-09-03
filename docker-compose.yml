@@ -1,0 +1,36 @@
+services:
+  db:
+    env_file:
+      - .env
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: on-failure
+    volumes:
+      - ./data/redis:/data
+
+  service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000
+    restart: on-failure
+    environment:
+      - POSTGRES_HOST=db
+      - REDIS_HOST=redis
+    depends_on:
+      - db
+      - redis
+
+
+volumes:
+  postgres_data:
