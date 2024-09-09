@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { log } from './src/middleware/log.ts';
+import { log } from './src/middleware/log';
 import cookieParser from 'cookie-parser';
 import { router } from './src/routes';
 import swaggerOutput from './src/swagger_output.json';

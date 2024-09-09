@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createUser, logIn, profile } from '../controllers/user.ts';
-import { verifyTokenMW } from '../middleware/token.ts';
+import { createUser, logIn, profile } from '../controllers/user';
+import { verifyTokenMW } from '../middleware/token';
 
 const router = Router();
 

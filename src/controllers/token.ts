@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
-import redis from '../utils/redis.ts';
+import redis from '../utils/redis';
 import type { Request, Response } from 'express';
 import {
   ACCESS_TOKEN_EXPIRY,
   REFRESH_TOKEN_EXPIRY,
-} from '../constants/constants.ts';
-import type { TokenPayload } from '../middleware/token.ts';
-import prisma from '../utils/prisma.ts';
+} from '../constants/constants';
+import type { TokenPayload } from '../middleware/token';
+import prisma from '../utils/prisma';
 
 export const refreshToken = async (req: Request, res: Response) => {
   const { refreshToken } = req.cookies;

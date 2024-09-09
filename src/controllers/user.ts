@@ -1,4 +1,4 @@
-import prisma from '../utils/prisma.ts';
+import prisma from '../utils/prisma';
 import type { Request, Response } from 'express';
 import { Prisma } from '@prisma/client';
 import jwt from 'jsonwebtoken';
@@ -6,7 +6,7 @@ import redis from '../utils/redis';
 import {
   ACCESS_TOKEN_EXPIRY,
   REFRESH_TOKEN_EXPIRY,
-} from '../constants/constants.ts';
+} from '../constants/constants';
 import bcrypt from 'bcrypt';
 
 interface CreateUserRequest extends Request {
