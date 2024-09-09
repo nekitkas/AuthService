@@ -25,6 +25,13 @@ interface LoginRequest extends Request {
   };
 }
 
+interface UserResponse {
+  id: string;
+  firstName: string | null;
+  lastName: string | null;
+  email: string;
+}
+
 export const createUser = async (req: CreateUserRequest, res: Response) => {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName || !email || !password) {
@@ -49,7 +56,14 @@ export const createUser = async (req: CreateUserRequest, res: Response) => {
         passwordHash: hashedPassword as string,
       },
     });
-    res.json(user);
+
+    const userResponse: UserResponse = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+    res.json(userResponse);
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === 'P2002') {
@@ -108,8 +122,14 @@ export const logIn = async (req: LoginRequest, res: Response): Promise<any> => {
       secure: process.env.NODE_ENV === 'production',
       maxAge: REFRESH_TOKEN_EXPIRY.millisecond,
     });
+    const userResponse: UserResponse = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
 
-    res.status(200).json(user);
+    res.status(200).json(userResponse);
   } catch (error) {
     return res.status(500).json({ error: error });
   }
@@ -130,7 +150,15 @@ export const profile = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    res.json(user);
+
+    const userResponse: UserResponse = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    res.json(userResponse);
   } catch (error) {
     return res.status(500).json({ error: error });
   }
