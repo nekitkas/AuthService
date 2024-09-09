@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import { router } from './src/routes';
 import swaggerOutput from './src/swagger_output.json';
 import swaggerUi from 'swagger-ui-express';
+import expressListRoutes from 'express-list-routes';
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(cookieParser());
 app.use(log);
 app.use(router);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOutput));
+
+expressListRoutes(app);
 
 const start = async () => {
   app.listen(3000, () => {
