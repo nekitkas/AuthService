@@ -1,6 +1,6 @@
 import express from 'express';
-import userRoutes from './user.ts';
-import tokenRoutes from './token.ts';
+import userRoutes from './user';
+import tokenRoutes from './token';
 
 export const router = express.Router();
 

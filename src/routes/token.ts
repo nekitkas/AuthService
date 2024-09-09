@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { refreshToken, revokeToken } from '../controllers/token.ts';
+import { refreshToken, revokeToken } from '../controllers/token';
 
 const router = Router();
 
