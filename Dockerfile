@@ -8,6 +8,8 @@ RUN npx prisma generate
 
 RUN npm ci
 
+RUN npm run build 
+
 FROM node:22.3.0-bullseye-slim
 
 WORKDIR /app
