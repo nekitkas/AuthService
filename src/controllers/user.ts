@@ -8,6 +8,7 @@ import {
   REFRESH_TOKEN_EXPIRY,
 } from '../constants/constants';
 import bcrypt from 'bcrypt';
+import { log } from 'console';
 
 interface CreateUserRequest extends Request {
   body: {
